@@ -8,7 +8,7 @@ import { useStateValue } from "./StateProvider";
 import { useEffect } from "react";
 import { auth } from "./firebase";
 function App() {
-  const [{user}, dispatch] = useStateValue()
+  const [{}, dispatch] = useStateValue()
 
   useEffect(()=>{
    const unsubscribe= auth.onAuthStateChanged((authUser)=>{
@@ -27,9 +27,8 @@ function App() {
     return () =>{
       unsubscribe()
     }
-  },[])
+  },[dispatch])
 
-  console.log('User is >>>> ' +user)
   
   return (
     <Router>
